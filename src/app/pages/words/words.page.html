@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>words</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let word of wordFire">
+    <ion-card-header>
+      <ion-card-subtitle><b>LEVEL {{word.level}}</b></ion-card-subtitle>
+      <ion-card-title style="text-align: center;">{{word.word}} - {{word.meaning}}</ion-card-title>
+      <ion-badge color="danger"></ion-badge>
+    </ion-card-header>
+
+    <ion-card-content>
+      <b>Description:</b>
+      {{word.description}}
+    </ion-card-content>
+
+    <ion-card-content>
+      <b>Example:</b>
+      {{word.example}}
+    </ion-card-content>
+
+    <ion-segment color="danger" (click)="setFavoriteWithFire(word,$event.target.value)" scrollable value="favorite">
+      <ion-segment-button value="favorite" layout="icon-end">
+        <ion-icon name="heart" *ngIf="word.favorite==1"></ion-icon>
+        <ion-icon name="heart-outline" *ngIf="word.favorite==0"></ion-icon>
+      </ion-segment-button>
+
+    </ion-segment>
+    <!-- (click)="statusClicked(word.status)"  -->
+    <ion-segment color="warning" (click)="setStatusWithFire(word,$event.target.value)" scrollable value="up">
+
+      <ion-segment-button value="call" layout="icon-start" class= "sc-ion-label-md-h sc-ion-label-md-s md hydrated">
+
+        <ion-icon name="thumbs-up" #thumbsUp ></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="favorite" layout="icon-start"  class="sc-ion-label-md-h sc-ion-label-md-s md hydrated">
+
+        <ion-icon name="thumbs-down" #thumbsDown></ion-icon>
+      </ion-segment-button>
+
+    </ion-segment>
+
+
+  </ion-card>
+</ion-content>
